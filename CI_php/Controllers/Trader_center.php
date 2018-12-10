@@ -29,7 +29,6 @@ class Trader_center extends CI_Controller {
 	//最终，得出最终结算价格
 	public function out_of_trader()
 	{
-		echo "<pre>";
 		$data = $this -> trader_center -> check_trader_open();
 		//是否计算判定
 		if($data['flag'] == 1){
@@ -46,20 +45,22 @@ class Trader_center extends CI_Controller {
 				
 				//更改下单状态 插入计算池
 				$data = $this -> trader_center -> trader_center_in($sort_list);
-				print_r($data);
+				
 				/*
 				 * 对计算池结果进行运算
 				 * 
 				 * */
-				
+				$this -> trader_center -> cal_trade();
 				
 					
 		}else{
 			//继续最后初始价格
+			$this -> trader_center -> final_last_price();
+			echo "最后的价格";
 			
 		}
 	}
-	
+
 	
 	
 	
