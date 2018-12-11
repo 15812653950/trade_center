@@ -51,8 +51,6 @@ class Trader_center extends CI_Controller {
 				 * 
 				 * */
 				$this -> trader_center -> cal_trade();
-				
-					
 		}else{
 			//继续最后初始价格
 			$this -> trader_center -> final_last_price();

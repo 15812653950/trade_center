@@ -18,7 +18,7 @@ class Trader_center_class extends CI_Model {
 		$sell_data = $this -> search_price('sell');
 		$array = array('buy'=>$buy_data,'sell'=>$sell_data);
 		
-		if(($buy_data['max'] > $sell_data['min']) && $sell_data['min'] != '' && $buy_data['max'] != ''){
+		if(($buy_data['max'] >= $sell_data['min']) && $sell_data['min'] != '' && $buy_data['max'] != ''){
 			
 			
 			return array('flag'=>1,'data'=>$array);
@@ -139,12 +139,11 @@ class Trader_center_class extends CI_Model {
 			$volume 	  = $last_data['volume'];
 			$last_price   = $last_data['last_price'];
 			$volume_money = $last_data['volume'];
-			
-			print_r($last_data);
+			#print_r($last_data);
 		}
+		print_r('价格综合结果：'.$last_price.',成交量：'.$volume.'，成交金额：'.$volume_money);
 		$array = array('time_desc'=>$time_desc,'change_time'=>$now,'price'=>$last_price,'volume'=>$volume,'volume_money'=>$volume_money);
 		$this -> db -> insert('trade_day', $array);
-		
 	}
 	
 	
